@@ -520,7 +520,7 @@ This provides a safe recovery mechanism without modifying infrastructure.
 
 ---
 
-# 📸 Suggested Screenshots
+# 📸 Output screenshots
 
 The following screenshots demonstrate the complete pipeline in action.
 
