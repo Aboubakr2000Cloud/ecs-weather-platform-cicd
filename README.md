@@ -1,6 +1,4 @@
-# 🚀 Week 19 — Production-Inspired CI/CD Pipeline for AWS ECS Weather Platform
-
-> **Cloud Engineering Roadmap** · Week 19 of 24
+# 🚀 Production-Inspired CI/CD Pipeline for AWS ECS Weather Platform
 
 A production-inspired CI/CD pipeline built around a containerized Flask weather application deployed on **Amazon ECS Fargate** using **Terraform** and **GitHub Actions**.
 
@@ -827,7 +825,6 @@ The resulting solution provides a repeatable deployment process with integrated 
 
 **Aboubakr**
 
-Cloud Engineering Roadmap — Week 19
+Cloud Engineering
 
-Building production-inspired cloud solutions one project at a time. ☁️🚀
 
