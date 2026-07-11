@@ -1,5 +1,16 @@
 # 🚀 Production-Inspired CI/CD Pipeline for AWS ECS Weather Platform
 
+![Terraform](https://img.shields.io/badge/Terraform-IaC-623CE4?style=for-the-badge&logo=terraform)
+![AWS ECS](https://img.shields.io/badge/AWS-ECS_Fargate-FF9900?style=for-the-badge&logo=amazonaws)
+![Amazon ECR](https://img.shields.io/badge/AWS-ECR-FF9900?style=for-the-badge&logo=amazonaws)
+![Amazon RDS](https://img.shields.io/badge/AWS-RDS_MySQL-FF9900?style=for-the-badge&logo=amazonaws)
+![Docker](https://img.shields.io/badge/Docker-Multi--Stage_Build-2496ED?style=for-the-badge&logo=docker)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?style=for-the-badge&logo=github-actions)
+![Trivy](https://img.shields.io/badge/Trivy-Security_Scanning-1904DA?style=for-the-badge&logo=aquasecurity)
+![Python](https://img.shields.io/badge/Python-Flask-3776AB?style=for-the-badge&logo=python)
+![Terraform Plan](https://img.shields.io/badge/Terraform-Plan_Artifacts-623CE4?style=for-the-badge&logo=terraform)
+![Rollback](https://img.shields.io/badge/Deployment-Automatic_Rollback-red?style=for-the-badge)
+
 A production-inspired CI/CD pipeline built around a containerized Flask weather application deployed on **Amazon ECS Fargate** using **Terraform** and **GitHub Actions**.
 
 This project automates the complete software delivery lifecycle—from validating code quality and running automated tests to provisioning AWS infrastructure, building Docker images, deploying new ECS task definitions, validating deployments through smoke tests, and supporting rollback strategies.
@@ -71,6 +82,59 @@ Success   Failure
    │         │
      ▼              ▼
  Complete  Automatic Rollback
+```
+---
+
+# 🏗️ High-Level Architecture
+
+```mermaid
+flowchart TD
+
+Developer --> GitHub
+
+GitHub --> CI[GitHub Actions CI]
+
+CI --> Quality[Quality Checks]
+CI --> UnitTests[Unit Tests]
+CI --> IntegrationTests[Integration Tests]
+
+Quality --> CD
+UnitTests --> CD
+IntegrationTests --> CD
+
+CD[Production Deployment Workflow]
+
+CD --> TerraformPlan[Terraform Plan]
+TerraformPlan --> TerraformApply[Terraform Apply]
+
+TerraformApply --> VPC
+TerraformApply --> ECSCluster[ECS Cluster]
+TerraformApply --> ECSService[ECS Service]
+TerraformApply --> ALB
+TerraformApply --> RDS
+TerraformApply --> ECR
+TerraformApply --> Secrets
+TerraformApply --> CloudWatch
+
+CD --> DockerBuild[Docker Build]
+DockerBuild --> Trivy[Trivy Scan]
+Trivy --> ECR
+
+ECR --> ECSService
+
+Internet --> ALB
+ALB --> ECSService
+
+ECSService --> RDS
+ECSService --> Secrets
+ECSService --> CloudWatch
+ECSService --> OpenWeatherMap
+
+CD --> SmokeTest[Smoke Test]
+
+SmokeTest -->|Success| Production[Deployment Complete]
+SmokeTest -->|Failure| Rollback[Automatic Rollback]
+Rollback --> ECSService
 ```
 
 ---
