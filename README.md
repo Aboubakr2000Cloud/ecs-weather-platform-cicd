@@ -13,9 +13,13 @@
 
 A production-inspired CI/CD pipeline built around a containerized Flask weather application deployed on **Amazon ECS Fargate** using **Terraform** and **GitHub Actions**.
 
+📖 Overview
+
 This project automates the complete software delivery lifecycle—from validating code quality and running automated tests to provisioning AWS infrastructure, building Docker images, deploying new ECS task definitions, validating deployments through smoke tests, and supporting rollback strategies.
 
 Rather than simply deploying an application, the objective of this project was to design a reliable deployment workflow that follows modern DevOps practices while remaining fully reproducible through Infrastructure as Code.
+
+> This project evolved through several stages — this version adds the CI/CD pipeline. See [ecs-weather-platform-secured](https://github.com/Aboubakr2000Cloud/ecs-weather-platform-secured) for the current, fully hardened version.
 
 ---
 
